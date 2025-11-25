@@ -1,241 +1,235 @@
-# AEMS–Module  
-Die Architektur des AEMS ist modular aufgebaut.  
-Jedes Modul erfüllt eine klar definierte Aufgabe und kann einzeln eingeführt werden –  
-oder gemeinsam als vollständiges antifragiles Energiemanagement-System wirken.
+# AEMS Module – Die Architektur des Systems
 
-Die Module sind so strukturiert, dass sie:
+AEMS besteht aus **acht eigenständigen Bausteinen**, die zusammen ein  
+antifragiles Energiemanagement-System ergeben.  
+Jedes Modul erfüllt eine klare Funktion, besitzt ein eigenes Rollenmodell  
+und kann unabhängig von den anderen eingeführt werden.
 
-- **Unsicherheit reduzieren**
-- **Risiken sichtbar machen**
-- **Entscheidungen unterstützen**
-- **Rollenklarheit schaffen**
-- **Szenarien statt Prognosen verwenden**
-- **technische und kaufmännische Perspektiven verknüpfen**
+<Callout type="info">
+Du musst AEMS nicht auf einmal implementieren.  
+Unternehmen beginnen oft mit 2–3 Modulen und skalieren schrittweise.
+</Callout>
 
-AEMS besteht aus **acht Kernmodulen**, die entlang der EPRIS-Denkweise aufgebaut sind.
+---
+
+# Übersicht der 8 Module
+
+<div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
+
+<div>
+<Callout type="definition">
+**1. Daten & Infrastruktur**  
+Grundlage aller Analysen: Zählerlandschaft, Datenflüsse, Zuverlässigkeit, Ownership.
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**2. Verbrauch & Lastprofil**  
+Struktur der Energiemengen: Muster, Flexibilität, Einflussgrößen, Lastspitzen.
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**3. Kosten & Verträge**  
+Kostenstrukturen, Preisbestandteile, Vertragsmodelle, Abrechnungslogik.
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**4. Erzeugung & Anlagen**  
+Eigenerzeugung, BHKW, PV, Speicher, Wirkungsgrade, Einsatzstrategien.
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**5. Beschaffung & Märkte**  
+Spot vs. Termin, Tranchen, Hedging, Marktlogik, Risikotransfer.
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**6. CO₂ & Nachhaltigkeit**  
+Emissionen, Faktoren, Bilanzierung, Reduktionspfade, Kosten des CO₂.
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**7. Risiko & Szenarien**  
+Preis-, Mengen-, Struktur- und Systemrisiken. Baseline, Stress, Chance, Worst Case.
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**8. Steuerung & Reporting**  
+Rhythmus, Rollen, Entscheidungsbaupläne, Transparenz, Dokumentation.
+</Callout>
+</div>
+
+</div>
 
 ---
 
 # 1. Daten & Infrastruktur
 
-Dieses Modul bildet die Grundlage des AEMS.
+Ohne Datenqualität ist kein antifragiles System möglich.  
+AEMS bewertet Daten nicht nach Menge, sondern nach **Zuverlässigkeit**.
 
-Es beantwortet Fragen wie:
+- Messstellen & Zähler  
+- Hierarchien & Anlagenstruktur  
+- Datenflüsse & Integrationen  
+- Datenqualitätslogik (hart, weich, Annahmen, unbekannt)  
+- Ownerships je Datenobjekt  
 
-- Welche Daten haben wir?  
-- Welche Daten fehlen?  
-- Was ist zuverlässig?  
-- Wie entstehen unsere Energieflüsse?  
-- Welche Quellen nutzen wir? (Zähler, SCADA, Markt, Lieferanten, interne Systeme)  
-- Wer ist Data Owner?
-
-Wesentliche Elemente:
-
-- Datenquellen & Schnittstellen  
-- Messstellen, Zähler, Pläne  
-- Datenqualität & Datenlücken  
-- Import, Export, Strukturierung  
-- Data Ownership  
-- IT/OT-Verzahnung  
-
-**Outcome:**  
-Ein stabiles Datengerüst, das unabhängig von Perfektion funktioniert und für Analysen geeignet ist.
+<Callout type="neutral">
+Die wichtigsten Fragen:  
+**Was wissen wir sicher? Was wissen wir nicht? Und wem gehört welche Information?**
+</Callout>
 
 ---
 
-# 2. Verbrauch & Lastprofile
+# 2. Verbrauch & Lastprofil
 
-Dieses Modul zeigt, **wie Energie im Unternehmen fließt**.
+Verbrauch ist der **strukturgebende Faktor** der Energieanalyse.
 
-Inhalte:
+AEMS betrachtet:
 
-- Lastprofile (Strom, Gas, Wärme)  
-- Tages-, Wochen-, Jahresverläufe  
-- Standort- und Anlagenstruktur  
-- Einflussfaktoren (Wetter, Produktion, Prozesse)  
-- Lastspitzen & Optimierung  
-- Flexibilitäten entdecken (z. B. Verschiebbarkeit)
+- Grundlast  
+- Spitzenlast  
+- Tages- & Wochenmuster  
+- Produktionsabhängigkeit  
+- saisonale Effekte  
+- Flexibilitätspotenziale  
 
-Wesentliche Fragen:
-
-- Wo wird Energie verbraucht?  
-- Welche Muster erkennen wir?  
-- Welche Lasten sind strukturell / welche zufällig?  
-- Welche Unsicherheiten gibt es?
-
-**Outcome:**  
-Ein klares Bild der Energieverbrauchsstruktur.
+<Callout type="strategy">
+Ziel: Erkennen, welche Verbrauchsanteile **steuerbar**, **beeinflussbar** oder **unveränderbar** sind.
+</Callout>
 
 ---
 
 # 3. Kosten & Verträge
 
-Hier geht es um das **ökonomische Herz** von Energie.
+Kosten entstehen nicht zufällig — sie folgen einer **Kostenarchitektur**:
 
-Inhalte:
+- Energiepreis  
+- Netz  
+- Abgaben & Umlagen  
+- Steuern  
+- Leistung  
+- Vertragsstruktur  
 
-- Preisbestandteile  
-- Netzentgelte  
-- Steuern & Umlagen  
-- Fixpreise, Fahrpläne, Tranchen, Spot  
-- Vertragsmodelle  
-- Lieferantenrollen  
-- Budgetierung
-
-Fragen:
-
-- Was kostet uns Energie tatsächlich?  
-- Welche Preisrisiken haben wir?  
-- Welche Vertragsarchitektur passt zu unserem Verbrauch?
-
-**Outcome:**  
-Ein konsistentes Kosten- und Vertragsbild, das Entscheidungen ermöglicht.
+<Callout type="definition">
+**Cost Stack:** Detaillierte Zerlegung aller Preisbestandteile.  
+Basis für risikoarme Entscheidungen in Beschaffung & Budget.
+</Callout>
 
 ---
 
 # 4. Erzeugung & Anlagen
 
-Hier werden alle eigenen Energieanlagen strukturiert.
+Eigenerzeugungsanlagen sind **Hebel für Robustheit** und **Optionen für Antifragilität**.
 
-Inhalte:
+AEMS analysiert:
 
-- PV, BHKW, Wind, Speicher  
-- Wirkungsgrade  
-- Betriebsweisen  
-- Wirtschaftlichkeit  
-- CO₂-Effekte  
-- Technische Optionen  
-- Wartung & Verfügbarkeit
+- BHKW / KWK  
+- PV  
+- Speicher  
+- Wärmepumpen & thermische Anlagen  
+- Einsatzstrategien  
+- Wirkungsgradketten  
 
-Fragen:
-
-- Welche Anlagen haben wir?  
-- Wie beeinflussen sie unsere Kosten?  
-- Wo entstehen Flexibilitäten?  
-- Welche Risiken gibt es?
-
-**Outcome:**  
-Ein klares Bild der eigenen Energieerzeugung.
+<Callout type="antifragil">
+Erzeugung schafft Optionen – und Optionen sind der Kern antifragiler Systeme.
+</Callout>
 
 ---
 
 # 5. Beschaffung & Märkte
 
-Dieses Modul verbindet die Welt der Märkte mit der Realität des Betriebs.
+Einer der volatilsten Bereiche.  
+AEMS trennt klar:
 
-Inhalte:
-
-- Marktpreise  
-- Hedging  
-- Spot vs. Termin  
+- Marktlogik  
+- Strategische Beschaffung  
+- Operative Beschaffung  
+- Risikoübertragung  
+- Hedging-Logiken  
+- Spot & Termin  
 - Tranchenmodelle  
-- Risiko nach Taleb (fragil/robust/antifragil)  
-- Rolle von Szenarien  
-- Timing & Entscheidungsregeln
 
-Fragen:
-
-- Welche Beschaffungsstrategie ist robust?  
-- Welche ist antifragil?  
-- Welche Risiken akzeptieren wir?
-
-**Outcome:**  
-Eine Beschaffungslogik, die unabhängig vom Marktzustand funktioniert.
+<Callout type="warning">
+Eine Beschaffungsstrategie ohne Szenarien ist **strukturell fragil**.
+</Callout>
 
 ---
 
 # 6. CO₂ & Nachhaltigkeit
 
-CO₂ wird zunehmend zum „zweiten Preis“.
+CO₂ ist im AEMS der „zweite Preis“.  
+Es ist nicht nur ESG-Thema, sondern Teil der **unternehmerischen Kostenstruktur**.
 
-Inhalte:
+- Emissionsfaktoren  
+- Bilanzierungslogik  
+- Maßnahmenwirkung  
+- Investitionspfade  
+- CO₂-Kostenwirkungen  
 
-- CO₂-Bilanzierung  
-- Scope 1–3  
-- Vermeidung, Reduktion, Kompensation  
-- regulatorische Anforderungen  
-- Zertifikate  
-- Nachhaltigkeitsstrategien  
-
-Fragen:
-
-- Welche CO₂-Treiber hat unser Unternehmen?  
-- Welche Maßnahmen sind „effektiv vs. effizient“?  
-- Welche Investitionen sind robust?  
-
-**Outcome:**  
-Ein strategisches CO₂-Management, das mit Energie verzahnt ist.
+<Callout type="success">
+CO₂ wirkt nicht getrennt vom Energiesystem —  
+es ist **integrierter Bestandteil** von Risiko, Kosten und Entscheidungen.
+</Callout>
 
 ---
 
 # 7. Risiko & Szenarien
 
-Das **Kernmodul der antifragilen Logik**.
+AEMS ersetzt Prognosen durch **Szenarien & Bandbreiten**.
 
-Inhalte:
+Typen im System:
 
-- Szenarien (Basis, Stress, Chance, Worst Case)  
-- Bandbreiten statt Punkte  
-- Preis- und Mengenschwankungen  
-- Ausfall & Nicht-Verfügbarkeit  
-- Finanzielle & operative Risiken  
-- Kombinationen aus Märkten & Verbrauch  
+- Baseline  
+- Chance  
+- Stress  
+- Worst Case  
+- Portfoliorisiken  
+- Mengenrisiken  
+- Preisrisiken  
 
-Fragen:
-
-- Wie wirken Risiken gleichzeitig?  
-- Was bricht zuerst, wenn es schiefläuft?  
-- Wer trägt welche Verantwortung?  
-
-**Outcome:**  
-Ein realitätsnahes Bild der Unsicherheit – und Optionen, damit umzugehen.
+<Callout type="fragil">
+Fixe Punktwerte sind fragil – sie brechen bei Extremen.
+</Callout>
 
 ---
 
 # 8. Steuerung & Reporting
 
-Das „Nervensystem“ des AEMS.
+Der zentrale Taktgeber des Systems.
 
-Inhalte:
+AEMS definiert:
 
-- Meetings & Rhythmen  
-- Entscheidungsarchitektur (Owner/Analyst/Expert/Approver)  
-- Templates & Fragen  
-- monatliche Steuerung  
-- jährliche Budgetierung  
-- KPI-Bandbreiten statt fixe Zahlen  
-- Dokumentation & Nachvollziehbarkeit  
+- Rollen (Owner, Analyst, Expert, Approver)  
+- Meetingrhythmus  
+- Entscheidungsformate  
+- Templates & Architektur  
+- Dokumentation  
+- Verantwortungslogik  
 
-Fragen:
-
-- Wie bringen wir alle an einen Tisch?  
-- Welche Entscheidung treffen wir wann?  
-- Was muss vorbereitet werden?  
-- Welche Fragen müssen zwingend gestellt werden?  
-
-**Outcome:**  
-Ein funktionierender Steuerungsprozess – konsistent und antifragil.
+<Callout type="strategy">
+Die Qualität der Entscheidung entsteht nicht im Meeting –  
+sondern in der **Vorbereitung**, entlang der AEMS-Struktur.
+</Callout>
 
 ---
 
-# Wie die Module zusammenarbeiten
-
-AEMS-Module sind **nicht linear**.  
-Sie bilden ein **System**, das auf vier Ebenen funktioniert:
-
-1. **Datenebene** (Module 1–2)  
-2. **Kostenebene** (Module 3–4)  
-3. **Markt-/Risikomanagement** (Module 5–7)  
-4. **Steuerung** (Modul 8)
-
-> Die Stärke des Systems liegt nicht im einzelnen Modul,  
-> sondern in der **Verzahnung** aller Bausteine.
-
----
-
-# Nächster Schritt
-
-Weiter geht’s zur **Analyse**:  
-Daten, Bandbreiten, Unsicherheiten, Szenarien und Entscheidungsgrundlagen.
+# Weiterführend
 
 👉 **[Analyse](/analyse)**  
+👉 **[Prinzipien](/prinzipien)**  
+👉 **[Glossar](/glossar)**  
+

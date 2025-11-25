@@ -1,234 +1,263 @@
-# Analyse in AEMS  
-Analyse ist eines der zentralen Elemente des AEMS.  
-Hier entsteht der Übergang von **Daten** zu **Entscheidungen**.
+# Analyse – Von Daten zu Entscheidungen
 
-AEMS nutzt Analysen nicht, um Vorhersagen zu treffen,  
-sondern um **Unsicherheit sichtbar zu machen**, Optionen zu strukturieren  
-und Entscheidungen antifragil vorzubereiten.
+Die Analyse ist das Herzstück des AEMS.  
+Sie verbindet Datenqualität, Unsicherheit, Bandbreiten und Szenarien zu klaren, strukturierten Entscheidungen.
+
+<Callout type="info">
+Analyse bedeutet im AEMS nicht "rechnen", sondern **Unsicherheit sichtbar machen** und Optionen optimieren.
+</Callout>
 
 ---
 
-# 1. Daten → Bandbreiten → Szenarien → Entscheidungen
+# 1. Der Analyse-Flow im AEMS
 
-Klassisches Energiemanagement arbeitet linear:
-
-> Daten → Kennzahlen → Bericht
-
-Das führt zu starren Sichtweisen und falscher Sicherheit.
-
-AEMS ersetzt diese Logik durch einen antifragilen Analysezyklus:
+AEMS nutzt einen standardisierten Analysefluss:
 
 1. **Daten erfassen**  
-2. **Bandbreiten bilden** – statt fixer Zahlen  
-3. **Szenarien entwickeln** – statt Prognosen  
-4. **Risiko- und Chancenwirkung analysieren**  
-5. **Entscheidung strukturieren** – Rollen & Optionen  
-6. **Maßnahmen einleiten**  
+2. **Zuverlässigkeit bewerten**  
+3. **Bandbreiten bilden**  
+4. **Szenarien ableiten**  
+5. **Wirkungen analysieren**  
+6. **Entscheidungsbauplan erstellen**  
+7. **Freigabe & Umsetzung**  
 
-Damit entsteht eine Analyse, die **robust gegen Fehler** ist und **von Unsicherheit profitiert**.
+<Callout type="strategy">
+Der Analyse-Flow ist antifragil:  
+Er funktioniert bei stabilen, volatilen und extremen Marktbedingungen gleichermaßen.
+</Callout>
 
 ---
 
 # 2. Datenqualität & Unsicherheit
 
-AEMS analysiert Daten immer unter der Frage:
+AEMS unterscheidet vier Kategorien:
 
-> *„Wie sicher ist diese Information?“*
+- **Harte Daten** (gemessen, vollständig, nachvollziehbar)  
+- **Weiche Daten** (modelliert, plausibilisiert, angenähert)  
+- **Annahmen** (bewusst gesetzte Parameter)  
+- **Unbekannte** (müssen explizit sichtbar bleiben)  
 
-Denn viele Energiedaten sind:
-
-- unvollständig  
-- verspätet  
-- doppelt  
-- nicht plausibilisiert  
-- modelliert, nicht gemessen  
-- nicht granular  
-- verzerrt durch falsche Zählerlogik  
-
-Darum unterscheidet AEMS:
-
-- **harte Daten** (gemessen, zuverlässig)  
-- **weiche Daten** (modelliert, unsicher)  
-- **Annahmen** (bewusst gesetzt)  
-- **Unbekannte** (müssen im Risiko sichtbar sein)
-
-AEMS zwingt zu Transparenz, statt Fehler zu verstecken.
+<Callout type="warning">
+Daten ohne Transparenz über ihre Zuverlässigkeit erzeugen falsche Sicherheit – und damit Fragilität.
+</Callout>
 
 ---
 
-# 3. Bandbreiten statt fixe Werte
+# 3. Bandbreiten statt fixer Werte
 
-Fixe Werte sind fragil.  
-Bandbreiten sind antifragil.
+Fixe Werte sind fragil – Bandbreiten sind robust.
 
 Beispiele:
 
-- statt „Strompreis = 110 €/MWh“ → **100–140 €/MWh**  
-- statt „Verbrauch = 12 GWh“ → **11–14 GWh**  
-- statt „Kosten = 2,4 Mio €“ → **2,1–2,8 Mio €**
+- **Verbrauch:** statt 12 GWh → **11–14 GWh**  
+- **Strompreis:** statt 110 €/MWh → **100–140 €/MWh**  
+- **Kosten:** statt 2,4 Mio € → **2,1–2,8 Mio €**  
 
-Vorteile:
-
-- realitätsnah  
-- besser für Risiko  
-- transparenter  
-- besser für Kommunikation mit CFO  
-- weniger fehleranfällig als „Punktwerte“
-
-Bandbreiten sind Kernbaustein der AEMS-Analyse.
+<Callout type="definition">
+**Bandbreite:** Ein bewusster Bereich zwischen Minimum und Maximum, der Unsicherheit realistisch abbildet.
+</Callout>
 
 ---
 
 # 4. Szenarien statt Prognosen
 
-Aus Bandbreiten entstehen Szenarien.
+Szenarien sind Denkmodelle, die Entscheidungen robust machen.  
+Sie ersetzen nicht die Zukunft – sie **strukturieren Unsicherheit**.
 
-Typisch in AEMS:
+AEMS verwendet vier Kern-Szenarien:
 
-- **Basisszenario**  
-- **Stresstest**  
-- **Chancenszenario**  
-- **Worst Case**  
+<div className="not-prose grid grid-cols-1 md:grid-cols-4 gap-4 my-10">
 
-Szenarien klären:
+<div>
+<Callout type="neutral">
+**Baseline**  
+Realistische Ausgangslage ohne Extremereignisse.
+</Callout>
+</div>
 
-- Welche Kosten entstehen im Stressfall?  
-- Wo brechen Prozesse zuerst?  
-- Welche Entscheidung kippt?  
-- Welche Option ist robust?  
-- Welche Option ist antifragil?
+<div>
+<Callout type="success">
+**Chance**  
+Positive Markt-, Verbrauchs- oder Erzeugungsentwicklung.
+</Callout>
+</div>
 
-Wichtig:  
-**Szenarien ersetzen nicht die Zukunft — sie machen Entscheidungen robuster.**
+<div>
+<Callout type="warning">
+**Stress**  
+Negative, aber plausible Belastungen auf Preis, Menge oder Struktur.
+</Callout>
+</div>
+
+<div>
+<Callout type="danger">
+**Worst Case**  
+Extrementwicklung mit maximalem Risiko.
+</Callout>
+</div>
+
+</div>
 
 ---
 
-# 5. Risikoanalyse
+# 5. Szenario-Matrix (Preis × Menge)
 
-AEMS analysiert Risiken auf drei Ebenen:
+Die wichtigste Matrix im AEMS kombiniert:
 
-## 5.1 Preisrisiko  
-- Spot vs. Termin  
-- Bandbreiten der Energiemärkte  
-- Extremereignisse (Volatilität)  
-- Jahreszeitliche Effekte  
+- **Preisrisiko** (Spot/Termin, Volatilität, geopolitisch)  
+- **Mengenrisiko** (Produktion, Wetter, Ausfälle, Verbrauchsstruktur)  
 
-## 5.2 Mengenrisiko  
+## 🎯 AEMS Szenario-Matrix (4-Felder-Logik)
+
+<div className="not-prose grid grid-cols-2 gap-4 my-12">
+
+<div>
+<Callout type="warning">
+**Preis ↑**  
+**Menge ↑**  
+→ Kostendruck hoch, Stress im Budget, Gefahr struktureller Überlastung
+</Callout>
+</div>
+
+<div>
+<Callout type="danger">
+**Preis ↑**  
+**Menge ↓**  
+→ Schlechtestes Verhältnis: Hohe Preise + wenig Volumen  
+Worst Case für Energieintensive Unternehmen
+</Callout>
+</div>
+
+<div>
+<Callout type="neutral">
+**Preis ↓**  
+**Menge ↑**  
+→ Gute Situation, aber Risiko bei Leistung/Spitzenlast
+</Callout>
+</div>
+
+<div>
+<Callout type="success">
+**Preis ↓**  
+**Menge ↓**  
+→ Optimale Kombination für Kosten & CO₂
+</Callout>
+</div>
+
+</div>
+
+<Callout type="strategy">
+Das AEMS nutzt die Matrix, um Handlungsoptionen klar zu strukturieren:  
+Welche Entscheidung bleibt gut, egal in welchem Quadranten wir landen?
+</Callout>
+
+---
+
+# 6. Risikoanalyse
+
+AEMS bewertet Risiken entlang drei Ebenen:
+
+## 6.1 Preisrisiko
+- Termin vs. Spot  
+- Volatilität  
+- extreme Preisbewegungen  
+- geopolitische Einflussfaktoren  
+
+## 6.2 Mengenrisiko
 - Produktionsschwankungen  
-- Witterungseinfluss  
+- saisonale Effekte  
 - technische Ausfälle  
-- Verbrauchsveränderungen  
+- Verbrauchsvariabilität  
 
-## 5.3 Struktur- und Systemrisiken  
+## 6.3 Struktur- & Systemrisiken
 - Zählerfehler  
-- fehlende Daten  
-- regulatorische Änderungen  
-- Lieferantenausfall  
-- Netz & Infrastruktur  
+- Datenlücken  
+- falsche Annahmen  
+- Lieferausfall  
+- regulatorische Risiken  
 
-AEMS kombiniert diese Risiken zu einer **ganzheitlichen Risikolandkarte**.
-
----
-
-# 6. Entscheidungsanalyse
-
-AEMS bringt die Analyse dahin, wo sie hingehört:
-
-> **zur Entscheidung.**
-
-Jede Analyse beantwortet eine konkrete Frage:
-
-- Sollen wir Preise absichern?  
-- Soll ein PV-Ausbau erfolgen?  
-- Welches CO₂-Szenario ist relevant?  
-- Wie wirkt eine Verbrauchsmaßnahme im Stresstest?  
-- Macht ein Anlagenumbau uns robuster?  
-
-Entscheidungsbauplan in AEMS:
-
-1. Kontext  
-2. Frage  
-3. Bandbreiten  
-4. Szenarien  
-5. Optionen  
-6. Wirkungen  
-7. Empfehlung  
-8. Rollen & Freigaben  
-
-Damit wird jede Entscheidung nachvollziehbar.
+<Callout type="warning">
+Risiken addieren sich NICHT – sie verstärken sich oft gegenseitig.  
+Darum arbeitet AEMS mit Szenarien, nicht mit Summen.
+</Callout>
 
 ---
 
-# 7. Analysestruktur entlang der Module
+# 7. Entscheidungsanalyse
 
-AEMS verbindet Analyse mit den acht Modulen:
+Der finale Schritt der Analyse ist der **Entscheidungsbauplan**.  
+Jede Entscheidung im AEMS folgt einer klaren Struktur:
 
-- **Daten:** Qualität, Zuverlässigkeit, Gaps  
-- **Verbrauch:** Lastprofile, Flexibilitäten  
-- **Kosten:** Preisbestandteile, Risiken  
-- **Erzeugung:** Szenarien, technische Optionen  
-- **Beschaffung:** Marktanalyse, Strategie  
-- **CO₂:** Bilanzierung, Maßnahmenwirkung  
-- **Risiko:** Kombinationen aus Preis/Menge  
-- **Steuerung:** Entscheidungsrhythmus  
+### Entscheidungsbauplan
 
-So entsteht ein **geschlossenes System** – keine Analyse als Selbstzweck.
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+
+<div>
+<Callout type="definition">
+**1. Kontext**  
+Warum beschäftigen wir uns damit?
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**2. Fragestellung**  
+Was soll entschieden werden?
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**3. Bandbreiten**  
+Welche Unsicherheiten sind wesentlich?
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**4. Szenarien**  
+Wie wirken Preis & Menge unter verschiedenen Entwicklungen?
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**5. Optionen**  
+Welche Handlungswege gibt es?
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**6. Wirkungen**  
+Wie beeinflussen Optionen Kosten, Risiko, CO₂?
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**7. Empfehlung**  
+Welche Entscheidung ist robust?
+</Callout>
+</div>
+
+<div>
+<Callout type="definition">
+**8. Rollen**  
+Wer entscheidet? Wer bereitet vor? Wer approvt?
+</Callout>
+</div>
+
+</div>
+
+<Callout type="success">
+Das Ergebnis: Entscheidungen, die transparent, nachvollziehbar und antifragil sind.
+</Callout>
 
 ---
 
-# 8. Methoden in der Analyse (Auszug)
+# Weiterführend
 
-AEMS nutzt je nach Modul:
-
-- Sensitivitätsanalysen  
-- Bandbreitenmodelle  
-- Stresstests  
-- Szenariomatrizen  
-- Monte-Carlo-Light  
-- Wirkungsmodelle für Maßnahmen  
-- Abhängigkeitstreiber  
-- CO₂-Kostenmodelle  
-- technische Effizienzmodelle  
-- Portfolioansätze für Energie  
-
-Alle Methoden sind **pragmatisch** und **entscheidungsorientiert**, nicht akademisch.
-
----
-
-# 9. Vom Datenkatalog zum Entscheidungsmodell
-
-Aus dem *CEnO-Datenkatalog* entstehen:
-
-- Meter-Level Daten  
-- Verbrauchsklassen  
-- Preisbestandteile  
-- Zuordnung zu Anlagen  
-- CO₂-Faktoren  
-- Datenqualitätskennzahlen  
-- Datenflussdiagramme  
-- Ownership-Regeln  
-
-Diese Daten fließen in die Analysebausteine ein – jedoch nur **so weit**, wie es für Entscheidungen sinnvoll ist.
-
----
-
-# 10. Ergebnis der Analyse
-
-Eine AEMS-Analyse liefert am Ende:
-
-- **eine klare Empfehlung**  
-- **Rollen & Verantwortlichkeiten**  
-- **Bandbreiten & Risiken**  
-- **Optionen & Wirkungen**  
-- **Dokumentation für CFO, Technik, Einkauf**  
-- **Transparenz über Unsicherheit**  
-
-Damit ist die Analyse nicht Selbstzweck, sondern **entscheidungswirksam**.
-
----
-
-# Nächster Schritt
-
-Weiter geht’s zum **Glossar**:
-
+👉 **[Module](/module)**  
+👉 **[Prinzipien](/prinzipien)**  
 👉 **[Glossar](/glossar)**  

@@ -1,189 +1,224 @@
 # Prinzipien des AEMS
 
-AEMS ist nicht nur ein Energiemanagement-System.  
-Es ist ein **Denkrahmen**, der Unternehmen befähigt, Energie strategisch, robust und antifragil zu steuern.  
-Die folgenden Prinzipien bilden die Grundlage des Systems.
+Die Prinzipien bilden das **geistige Betriebssystem** des AEMS.  
+Sie definieren, wie Energie, Unsicherheit, Daten, Rollen und Entscheidungen im Unternehmen gedacht werden müssen,  
+um ein **antifragiles Energiemanagement** zu ermöglichen.
+
+<Callout type="info">
+Diese Seite dient als Leitfaden: Sie definiert die Denklogik, auf der alle Module, Analysen und Entscheidungen im AEMS basieren.
+</Callout>
 
 ---
 
-# 1. Antifragilität – Gewinne aus Unsicherheit
+# 1. Antifragilität – Gewinne durch Unsicherheit
 
-Die Welt ist nicht planbar. Energiepreise, Regulatorik, Volatilität, Infrastruktur – alles ist geprägt von Unsicherheit.  
-AEMS folgt daher nicht klassischen Prognosen, sondern Talebs antifragiler Logik:
+AEMS basiert auf Talebs zentralem Gedanken:  
+**Unsicherheit ist keine Gefahr – sie ist Information.**
 
-- **Fragil**: bricht unter Volatilität  
-- **Robust**: hält Volatilität aus  
-- **Antifragil**: profitiert von Volatilität  
+Daraus ergibt sich:
 
-AEMS ist bewusst so gestaltet, dass Unternehmen **nicht auf das „richtige Szenario“ setzen müssen**,  
-sondern so strukturiert sind, dass sie *unabhängig vom Szenario* bessere Entscheidungen treffen.
+- Prognosen sind fragil  
+- Bandbreiten sind robust  
+- Optionen sind antifragil  
+- Stress zeigt Schwachstellen  
+- Volatilität offenbart Systemdesign
 
-> „Das Ziel ist nicht, die Zukunft vorherzusagen,  
-> sondern eine Struktur zu bauen, die unter jeder Zukunft funktioniert.“  
-> — Taleb (frei übertragen)
+<div className="not-prose grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
+
+<div>
+<Callout type="fragil">
+**Fragil:** Bricht unter Stress.  
+Beispiel: Fixpreis-Budget ohne Szenarien.
+</Callout>
+</div>
+
+<div>
+<Callout type="robust">
+**Robust:** Hält Stress aus.  
+Beispiel: Hedging ohne Mengenflexibilität.
+</Callout>
+</div>
+
+<div>
+<Callout type="antifragil">
+**Antifragil:** Profit bei Volatilität.  
+Beispiel: Flexibilitätsmodelle, modulare Beschaffung, Szenario-Entscheidungen.
+</Callout>
+</div>
+
+</div>
+
+<Callout type="strategy">
+Das Ziel: Entscheidungen so bauen, dass sie **unter vielen Zukünften gut funktionieren**, nicht nur unter einer.
+</Callout>
 
 ---
 
 # 2. Rollen statt Silos
 
-Energie ist ein Querschnittsthema – aber Organisationen arbeiten oft isoliert:
+Energie wird im Unternehmen oft in Silos behandelt:
 
-- Technik optimiert Betrieb  
-- Einkauf verhandelt Preise  
-- CFO optimiert Kosten  
-- ESG misst CO₂  
+- Technik ↔ Einkauf ↔ Controlling ↔ ESG  
+- getrennte Daten  
+- keine gemeinsame Sprache  
+- unklare Verantwortungen  
 
-AEMS ordnet das neu:  
+AEMS löst das über ein **rollenbasiertes Modell**:
 
-**Jede Entscheidung entsteht aus Rollen, nicht aus Abteilungen.**
+- **Owner** – verantwortet das Ergebnis  
+- **Analyst** – bereitet Entscheidung vor  
+- **Expert** – liefert technische/ökonomische Expertise  
+- **Approver** – gibt Entscheidung frei
 
-Die Rollen im AEMS:
-
-- **Owner** – trägt Ergebnisverantwortung  
-- **Analyst** – bereitet Entscheidungen vor  
-- **Expert** – liefert technische oder ökonomische Expertise  
-- **Approver** – formelle Freigabe  
-
-Damit entsteht ein **einheitlicher Entscheidungsraum**, in dem alle dieselbe Sprache sprechen.
+<Callout type="definition">
+**Rollenmodell:**  
+Nicht die Abteilung entscheidet –  
+sondern die Rolle, unabhängig von Hierarchie oder Silostruktur.
+</Callout>
 
 ---
 
 # 3. Szenarien statt Prognosen
 
-Prognosen sind systematisch falsch – besonders bei Energie.  
-AEMS nutzt daher konsequent **Szenarien**, nicht „Forecasts“.
+Prognosen versuchen die Zukunft vorherzusagen.  
+**Das ist strukturell fragil.**
 
-Ein Szenario ist:
-
-- kein Versuch, die Zukunft vorherzusagen  
-- eine **Denkhilfe**  
-- ein **Rahmen**, um Entscheidungen zu testen  
-- ein Werkzeug, um Risiken zu strukturieren  
-
-AEMS nutzt typischerweise:
+AEMS nutzt stattdessen:
 
 - Basisszenario  
-- Stress-Szenario  
 - Chancenszenario  
+- Stressszenario  
 - Worst-Case-Bandbreite  
+
+<Callout type="warning">
+Jede Energieprognose ist falsch.  
+Szenarien dagegen sind Denkmodelle für robuste Entscheidungen.
+</Callout>
 
 ---
 
-# 4. Entscheidungen im Mittelpunkt – nicht Daten
+# 4. Entscheidungen im Mittelpunkt (nicht Daten)
 
-Daten sind wichtig.  
-Aber Daten ohne Entscheidung sind wertlos.
+Viele Systeme sind datenlastig, aber **entscheidungsarm**.
 
-AEMS strukturiert Daten IMMER um eine Frage:
+AEMS dreht die Logik um:
 
-> **„Was muss entschieden werden?“**
+> **Zuerst kommt die Frage – dann die Analyse.**
 
-Erst dann:
+Dies zwingt zu:
 
-1. Welche Daten brauchen wir?  
-2. Wie zuverlässig sind sie?  
-3. Welche Bandbreiten sind realistisch?  
-4. Welche Optionen ergeben sich?  
-5. Wie beeinflussen Szenarien die Entscheidung?  
+- Klarheit  
+- Struktur  
+- Verantwortung  
+- Priorisierung  
+- Transparenz  
 
-AEMS ist kein Datensystem –  
-es ist ein **Entscheidungssystem**.
+<Callout type="strategy">
+Eine Analyse ohne klare Frage ist im AEMS wertlos.
+</Callout>
 
 ---
 
 # 5. Modularität – Bausteine statt Monolith
 
-AEMS ist modular aufgebaut.  
-Jedes Modul funktioniert eigenständig, aber alle greifen ineinander.
+AEMS besteht aus **acht Modulen**, die unabhängig funktionieren.
 
-Die Module:
+Modularität bedeutet:
 
-- Daten & Infrastruktur  
-- Verbrauch  
-- Kosten  
-- Erzeugung  
-- Beschaffung  
-- CO₂  
-- Risiko  
-- Steuerung  
-
-Modularität heißt:
-
-- bessere Einführung  
-- weniger Abhängigkeiten  
-- klare Verantwortlichkeiten  
+- Einführung nach Bedarf  
+- niedrigere Komplexität  
 - antifragile Struktur  
-- schneller Nutzen in einzelnen Bereichen  
-- später integrierbar  
+- bessere Verantwortlichkeiten  
+- pragmatische Umsetzung  
+
+Beispiel:
+
+<Callout type="neutral">
+Ein Unternehmen kann mit **Verbrauch & Kosten** starten  
+und später **Risiko & Szenarien** ergänzen – ohne Systemwechsel.
+</Callout>
 
 ---
 
 # 6. Komplexität reduzieren – aber nicht vereinfachen
 
-Energie ist komplex.  
-AEMS versucht nicht, Komplexität „wegzuoptimieren“.  
-Es macht sie **verständlich, steuerbar und entscheidbar**.
+Energie IST komplex.  
+AEMS versucht nicht, sie künstlich zu vereinfachen,  
+sondern:
 
-Das Prinzip:
+- Muster sichtbar zu machen  
+- Abhängigkeiten klarzustellen  
+- Optionen strukturiert darzustellen  
+- Unsicherheit explizit zu halten
 
-- **vereinfachen**: ja, wo sinnvoll  
-- **vereinheitlichen**: ja, durch Rollen & Module  
-- **verzerren/verharmlosen**: nein – Risiken bleiben sichtbar  
+<Callout type="info">
+Komplexität managen ≠ Komplexität ignorieren.  
+AEMS vermeidet falsche Sicherheit.
+</Callout>
 
 ---
 
 # 7. Transparenz statt Kontrolle
 
-Viele Energiesysteme sind gebaut, um „Kontrolle“ zu schaffen.  
-AEMS schafft nicht Kontrolle, sondern **Transparenz**:
+Viele Systeme versuchen „Kontrolle“ zu schaffen –  
+AEMS schafft **Transparenz**:
 
-- Was wissen wir?  
+- Was wissen wir sicher?  
 - Was wissen wir nicht?  
-- Wo sind Risiken?  
-- Welche Optionen existieren?  
-- Welche Entscheidung wird robust oder antifragil?  
+- Welche Risiken existieren?  
+- Welche Bandbreiten sind realistisch?  
+- Welche Optionen haben wir?  
 
-Transparenz → Optionen → Entscheidungen → Ergebnisse.
+<Callout type="success">
+Transparenz führt zu besseren Entscheidungen –  
+nicht mehr Kontrolle.
+</Callout>
 
 ---
 
-# 8. Zeitliche Perspektiven trennen
+# 8. Zeitliche Ebenen trennen
 
-Energieentscheidungen mischen oft Zeiträume.  
-AEMS trennt sie:
+AEMS trennt Energieentscheidungen klar nach Ebenen:
 
-- **operativ** (täglich / wöchentlich)  
-- **taktisch** (monatlich)  
-- **strategisch** (jährlich)  
+### **Operativ**
+- tägliches/Wöchentliches Lastmanagement  
+- kurzfristige Maßnahmen  
 
-Jeder Zeitraum hat andere Rollen, andere Risiken und andere Entscheidungen.
+### **Taktisch**
+- monatliche Kosten-/Verbrauchssteuerung  
+- Szenario-Updates  
+
+### **Strategisch**
+- Jahresbudget  
+- Beschaffungsstrategie  
+- Investitionsentscheidungen  
+
+<Callout type="definition">
+**Zeitliche Trennung verhindert, dass operative Themen strategische Entscheidungen überlagern.**
+</Callout>
 
 ---
 
 # 9. Konsistenz statt Perfektion
 
-AEMS erwartet keine perfekten Daten oder Modelle.  
-Wichtiger ist:
+AEMS erwartet keine perfekten Daten.  
+Aber es erwartet **konsistente Strukturen**.
 
-- konsistente Struktur  
-- konsistente Rollen  
+- konsistentes Rollenmodell  
 - konsistente Szenarien  
-- konsistente Entscheidungen  
+- konsistente Dokumentation  
+- konsistente Meetingrhythmen  
 
-Perfektion ist fragil.  
+<Callout type="info">
+Perfektion ist fragil –  
 Konsistenz ist antifragil.
+</Callout>
 
 ---
 
-# Was kommt als Nächstes?
+# Weiterführend
 
-👈 Auf der nächsten Seite gehen wir in die **Module** des Systems.  
-Dort erklären wir:
+👉 **[Module](/module)**  
+👉 **[Analyse](/analyse)**  
+👉 **[Glossar](/glossar)**  
 
-- wie die AEMS-Architektur aufgebaut ist  
-- welche Module Unternehmen brauchen  
-- wie sie zusammenwirken  
-- wie Daten, Rollen und Entscheidungen verknüpft werden  
-- welche Abhängigkeiten existieren  
-
-Weiter: **[Module](/module)**  
