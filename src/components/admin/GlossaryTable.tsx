@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from "react";
 import GlossaryEditor from "./GlossaryEditor";
-
-type GlossEntry = {
-  id: string;
-  term: string;
-  definition: string;
-  letter: string;
-  category?: string;
-};
+import type { GlossEntry } from "@/types/glossary";
 
 export default function GlossaryTable() {
   const [entries, setEntries] = useState<GlossEntry[]>([]);
@@ -17,7 +10,7 @@ export default function GlossaryTable() {
 
   async function load() {
     const res = await fetch("/api/glossary");
-    const data = await res.json();
+    const data: GlossEntry[] = await res.json();
     setEntries(data);
   }
 
@@ -29,10 +22,21 @@ export default function GlossaryTable() {
     load();
   }
 
+  function createBlank(): GlossEntry {
+    return {
+      id: "new",
+      term: "",
+      definition: "",
+      letter: "A",
+      category: null,
+      tags: null,
+    };
+  }
+
   return (
     <div className="space-y-6">
       <button
-        onClick={() => setSelected({ id: "new", term: "", definition: "", letter: "A" })}
+        onClick={() => setSelected(createBlank())}
         className="px-4 py-2 bg-blue-600 text-white rounded-md"
       >
         + Neuer Begriff
@@ -41,8 +45,8 @@ export default function GlossaryTable() {
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="border-b">
-            <th className="py-2">Term</th>
-            <th>Letter</th>
+            <th className="py-2">Begriff</th>
+            <th>Buchstabe</th>
             <th>Kategorie</th>
             <th></th>
           </tr>
@@ -52,7 +56,7 @@ export default function GlossaryTable() {
             <tr key={entry.id} className="border-b">
               <td className="py-2">{entry.term}</td>
               <td>{entry.letter}</td>
-              <td>{entry.category}</td>
+              <td>{entry.category ?? "—"}</td>
               <td>
                 <button
                   className="text-blue-600 underline"
@@ -67,7 +71,13 @@ export default function GlossaryTable() {
       </table>
 
       {selected && (
-        <GlossaryEditor entry={selected} onClose={() => { setSelected(null); refresh(); }} />
+        <GlossaryEditor
+          entry={selected}
+          onClose={() => {
+            setSelected(null);
+            refresh();
+          }}
+        />
       )}
     </div>
   );

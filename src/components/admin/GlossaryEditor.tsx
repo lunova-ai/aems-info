@@ -1,21 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import type { GlossEntry } from "@/types/glossary";
 
-// ---------- TYPING ----------
-
-export type GlossaryEditorEntry = {
-  id: string; // "new" oder uuid
-  term: string;
-  definition: string;
-  letter: string;
-  category: string | null;
-};
-
-type GlossaryEditorProps = {
-  entry: GlossaryEditorEntry;
+export type GlossaryEditorProps = {
+  entry: GlossEntry | { id: "new"; term: string; definition: string; letter: string; category: null };
   onClose: () => void;
 };
+
 
 // -------------------------------------
 
@@ -24,6 +16,7 @@ export default function GlossaryEditor({ entry, onClose }: GlossaryEditorProps) 
   const [definition, setDefinition] = useState<string>(entry.definition);
   const [letter, setLetter] = useState<string>(entry.letter);
   const [category, setCategory] = useState<string>(entry.category ?? "");
+
 
   async function save() {
     const body = {
