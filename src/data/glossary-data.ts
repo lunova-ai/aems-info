@@ -1,12 +1,12 @@
-// src/data/glossary-data.ts
-
 export type GlossaryEntry = {
   letter: string;
   term: string;
   definition: string;
+  category?: string;
+  tags?: string[];
 };
 
-export const glossary: GlossaryEntry[] = [
+const glossary: GlossaryEntry[] = [
   // ---------------- A ----------------
   {
     letter: "A",
@@ -1521,3 +1521,5 @@ export const glossary: GlossaryEntry[] = [
     "Simulation über eine definierte zeitliche Auflösung wie 15 Minuten, Stunden oder Tage. Im AEMS genutzt, um Lastgänge, Einspeisung, Netzbelastung und Kosten dynamisch abzubilden.",
 },
 ];
+
+export default glossary;

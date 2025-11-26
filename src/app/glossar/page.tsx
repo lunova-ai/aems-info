@@ -1,8 +1,13 @@
-"use client";
-
+import { supabase } from "@/lib/supabase";
 import GlossarySearch from "@/components/glossary/GlossarySearch";
 
-export default function GlossarPage() {
+export default async function GlossarPage() {
+  // Glossar-Daten von Supabase laden
+  const { data: entries } = await supabase
+    .from("glossary_entries")
+    .select("*")
+    .order("term", { ascending: true });
+
   return (
     <div className="prose prose-slate max-w-none">
       <h1>Glossar – AEMS Begriffe</h1>
@@ -13,7 +18,8 @@ export default function GlossarPage() {
         einer <strong>gemeinsamen Sprache</strong> arbeiten.
       </p>
 
-      <GlossarySearch />
+      {/* Einträge an die Komponente übergeben */}
+      <GlossarySearch entries={entries || []} />
 
       <hr />
 

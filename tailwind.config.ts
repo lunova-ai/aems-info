@@ -1,19 +1,21 @@
-import type { Config } from "tailwindcss";
+import { supabase } from "@/lib/supabase";
 
-const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
-  },
-  plugins: [],
-};
-export default config;
+export async function GET() {
+  const { data, error } = await supabase
+    .from("glossary_entries")
+    .select("*")
+    .order("term", { ascending: true });
+
+  return Response.json(data);
+}
+
+export async function POST(req: Request) {
+  const body = await req.json();
+
+  const { data, error } = await supabase
+    .from("glossary_entries")
+    .insert(body)
+    .select();
+
+  return Response.json(data);
+}
