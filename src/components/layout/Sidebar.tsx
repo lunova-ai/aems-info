@@ -9,6 +9,9 @@ const nav = [
   { title: "Module", href: "/module" },
   { title: "Analyse", href: "/analyse" },
   { title: "Glossar", href: "/glossar" },
+  { title: "Admin", href: "/admin" },
+  
+
 ];
 
 export default function Sidebar() {
