@@ -2,87 +2,135 @@
 
 import { useState } from "react";
 
-export default function GlossaryEditor({
-  entry,
-  onClose,
-}: {
-  entry: any;
+// ---------- TYPING ----------
+
+export type GlossaryEditorEntry = {
+  id: string; // "new" oder uuid
+  term: string;
+  definition: string;
+  letter: string;
+  category: string | null;
+};
+
+type GlossaryEditorProps = {
+  entry: GlossaryEditorEntry;
   onClose: () => void;
-}) {
-  const [term, setTerm] = useState(entry.term);
-  const [definition, setDefinition] = useState(entry.definition);
-  const [letter, setLetter] = useState(entry.letter);
-  const [category, setCategory] = useState(entry.category || "");
+};
+
+// -------------------------------------
+
+export default function GlossaryEditor({ entry, onClose }: GlossaryEditorProps) {
+  const [term, setTerm] = useState<string>(entry.term);
+  const [definition, setDefinition] = useState<string>(entry.definition);
+  const [letter, setLetter] = useState<string>(entry.letter);
+  const [category, setCategory] = useState<string>(entry.category ?? "");
 
   async function save() {
     const body = {
       term,
       definition,
-      letter,
-      category,
+      letter: letter.toUpperCase(),
+      category: category || null,
     };
 
-    const url =
-      entry.id === "new"
-        ? "/api/glossary"
-        : `/api/glossary/${entry.id}`;
+    const isNew = entry.id === "new";
+    const url = isNew ? "/api/glossary" : `/api/glossary/${entry.id}`;
+    const method = isNew ? "POST" : "PUT";
 
-    const method = entry.id === "new" ? "POST" : "PUT";
-
-    await fetch(url, {
-      method,
-      body: JSON.stringify(body),
-    });
+    try {
+      await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+    } catch (err) {
+      console.error("❌ Fehler beim Speichern:", err);
+    }
 
     onClose();
   }
 
   async function deleteEntry() {
     if (entry.id !== "new") {
-      await fetch(`/api/glossary/${entry.id}`, { method: "DELETE" });
+      try {
+        await fetch(`/api/glossary/${entry.id}`, {
+          method: "DELETE",
+        });
+      } catch (err) {
+        console.error("❌ Fehler beim Löschen:", err);
+      }
     }
     onClose();
   }
 
+  // ---------- UI ----------
+
   return (
     <div className="fixed inset-0 bg-black/30 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg w-[500px] space-y-4 shadow-lg">
-        <h3 className="text-xl font-semibold">Eintrag bearbeiten</h3>
+      <div className="bg-white p-6 rounded-lg w-[500px] space-y-4 shadow-lg border">
+        <h3 className="text-xl font-semibold">
+          {entry.id === "new" ? "Neuen Begriff anlegen" : "Eintrag bearbeiten"}
+        </h3>
 
+        {/* TERM */}
         <input
           className="w-full p-2 border rounded"
           value={term}
-          onChange={(e) => setTerm(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setTerm(e.target.value)
+          }
+          placeholder="Begriff"
         />
 
+        {/* DEFINITION */}
         <textarea
           className="w-full p-2 border rounded h-32"
           value={definition}
-          onChange={(e) => setDefinition(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setDefinition(e.target.value)
+          }
+          placeholder="Definition"
         />
 
+        {/* LETTER */}
         <input
           className="w-full p-2 border rounded"
           value={letter}
-          onChange={(e) => setLetter(e.target.value.toUpperCase())}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setLetter(e.target.value.toUpperCase().slice(0, 1))
+          }
+          placeholder="Buchstabe (A–Z)"
         />
 
+        {/* CATEGORY */}
         <input
           className="w-full p-2 border rounded"
-          placeholder="Kategorie"
+          placeholder="Kategorie (optional)"
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setCategory(e.target.value)
+          }
         />
 
-        <div className="flex justify-between">
+        <div className="flex justify-between pt-2">
           <button className="px-3 py-2 bg-gray-300 rounded" onClick={onClose}>
             Abbrechen
           </button>
           <div className="flex gap-4">
-            <button className="px-3 py-2 bg-red-600 text-white rounded" onClick={deleteEntry}>
-              Löschen
-            </button>
-            <button className="px-3 py-2 bg-blue-600 text-white rounded" onClick={save}>
+            {entry.id !== "new" && (
+              <button
+                className="px-3 py-2 bg-red-600 text-white rounded"
+                onClick={deleteEntry}
+              >
+                Löschen
+              </button>
+            )}
+            <button
+              className="px-3 py-2 bg-blue-600 text-white rounded"
+              onClick={save}
+            >
               Speichern
             </button>
           </div>
