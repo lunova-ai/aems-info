@@ -9,7 +9,10 @@ const nav = [
   { title: "Prinzipien", href: "/prinzipien" },
   { title: "Module", href: "/module" },
   { title: "Analyse", href: "/analyse" },
+
   { title: "Glossar", href: "/glossar" },
+
+  { title: "Glossar Admin", href: "/glossar/admin", admin: true },
 ];
 
 export default function MobileHeader() {
@@ -36,12 +39,14 @@ export default function MobileHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setOpen(false)}
                 className={`block px-3 py-2 rounded-md text-sm font-medium ${
                   active
                     ? "bg-blue-600 text-white"
+                    : item.admin
+                    ? "text-gray-500 hover:bg-gray-100"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
-                onClick={() => setOpen(false)}
               >
                 {item.title}
               </Link>

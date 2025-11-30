@@ -8,10 +8,12 @@ const nav = [
   { title: "Prinzipien", href: "/prinzipien" },
   { title: "Module", href: "/module" },
   { title: "Analyse", href: "/analyse" },
-  { title: "Glossar", href: "/glossar" },
-  { title: "Admin", href: "/admin" },
-  
 
+  // Nutzerbereich
+  { title: "Glossar", href: "/glossar" },
+
+  // Adminbereich
+  { title: "Glossar Admin", href: "/glossar/admin", admin: true },
 ];
 
 export default function Sidebar() {
@@ -45,6 +47,8 @@ export default function Sidebar() {
               className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 active
                   ? "bg-blue-600 text-white shadow-sm"
+                  : item.admin
+                  ? "text-gray-500 hover:bg-gray-100"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >

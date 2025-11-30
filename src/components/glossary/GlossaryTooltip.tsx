@@ -1,53 +1,110 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { GlossEntry } from "@/types/glossary";
 
-type Props = {
+type TooltipEntry = GlossEntry | null;
+
+export default function GlossaryTooltip({
+  term,
+  children,
+}: {
   term: string;
   children: React.ReactNode;
-};
-
-type GlossaryEntry = {
-  term: string;
-  definition: string;
-  category?: string | null;
-};
-
-export default function GlossaryTooltip({ term, children }: Props) {
+}) {
   const [open, setOpen] = useState(false);
-  const [entry, setEntry] = useState<GlossaryEntry | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const [entry, setEntry] = useState<TooltipEntry>(null);
+  const [loading, setLoading] = useState(false);
+
+  // Timer-Typen korrekt für Browser + Node
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const fetchEntry = async (): Promise<void> => {
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `/api/glossary/by-term?term=${encodeURIComponent(term)}`
+      );
+
+      if (res.ok) {
+        const json = (await res.json()) as GlossEntry;
+        setEntry(json);
+      } else {
+        setEntry(null);
+      }
+    } catch {
+      setEntry(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const openDelayed = (): void => {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current);
+    hoverTimer.current = setTimeout(() => {
+      void fetchEntry();
+      setOpen(true);
+    }, 150);
+  };
+
+  const closeDelayed = (): void => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    leaveTimer.current = setTimeout(() => {
+      setOpen(false);
+    }, 150);
+  };
 
   useEffect(() => {
-    if (!open || loaded) return;
-
-    (async () => {
-      const res = await fetch(`/api/glossary/by-term?term=${encodeURIComponent(term)}`);
-      if (res.ok) {
-        const data = await res.json();
-        setEntry(data);
-      }
-      setLoaded(true);
-    })();
-  }, [open, loaded, term]);
+    const fn = (e: KeyboardEvent): void => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", fn);
+    return () => window.removeEventListener("keydown", fn);
+  }, []);
 
   return (
     <span
-      className="relative inline-block cursor-help underline decoration-dotted underline-offset-2"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      className="relative inline-block cursor-help text-blue-700 hover:text-blue-900 transition"
+      onMouseEnter={openDelayed}
+      onMouseLeave={closeDelayed}
     >
       {children}
 
-      {open && entry && (
-        <div className="absolute z-20 mt-2 w-72 max-w-xs rounded-md border bg-white shadow-lg p-3 text-xs text-slate-700">
-          <div className="font-semibold text-slate-900 mb-1">{entry.term}</div>
-          <div className="text-slate-700 line-clamp-4">
-            {entry.definition}
-          </div>
-          {entry.category && (
-            <div className="mt-2 text-[11px] text-slate-500">
-              Kategorie: {entry.category}
+      {open && (
+        <div
+          className="
+            absolute z-50 mt-2
+            max-w-xs
+            p-4 rounded-lg shadow-xl border bg-white
+            text-slate-800 text-sm leading-relaxed
+            pointer-events-none
+          "
+          style={{ top: "100%", left: "0" }}
+        >
+          {loading ? (
+            <div className="text-slate-500 text-xs">Lade…</div>
+          ) : entry ? (
+            <>
+              <div className="font-semibold mb-1">{entry.term}</div>
+              <div className="text-slate-700">{entry.definition}</div>
+
+              {entry.tags && entry.tags.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {entry.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-slate-500 italic text-xs">
+              Keine Definition gefunden.
             </div>
           )}
         </div>
@@ -55,3 +112,4 @@ export default function GlossaryTooltip({ term, children }: Props) {
     </span>
   );
 }
+

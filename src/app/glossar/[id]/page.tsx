@@ -1,58 +1,51 @@
-import { supabase } from "@/lib/supabase";
-import Link from "next/link";
+import { supabase } from "@/lib/supabase-node";
+import GlossarDetailClient from "./GlossarDetailClient";
+import type { GlossEntry } from "@/types/glossary";
 
-type Props = {
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const { data } = await supabase
+    .from("glossary_entries")
+    .select("term, definition")
+    .eq("id", params.id)
+    .maybeSingle();
+
+  if (!data) {
+    return { title: "Glossar – Begriff" };
+  }
+
+  return {
+    title: `${data.term} – Glossar`,
+    description: data.definition?.slice(0, 160) ?? "",
+  };
+}
+
+export default async function GlossarDetailPage({
+  params,
+}: {
   params: { id: string };
-};
-
-export default async function GlossarDetailPage({ params }: Props) {
-  const { data: entry } = await supabase
+}) {
+  const { data, error } = await supabase
     .from("glossary_entries")
     .select("*")
     .eq("id", params.id)
-    .single();
+    .maybeSingle();
 
-  if (!entry) {
+  if (error) {
+    console.error("❌ Glossar Detail Fehler:", error);
+  }
+
+  if (!data) {
     return (
-      <div className="max-w-3xl mx-auto py-10">
-        <p className="text-slate-600">Begriff nicht gefunden.</p>
-        <Link href="/glossar" className="text-blue-600 underline mt-4 block">
+      <div className="max-w-3xl mx-auto py-20 text-center text-slate-600">
+        <h1 className="text-3xl font-semibold mb-4">Begriff nicht gefunden</h1>
+        <a href="/glossar" className="text-blue-600 hover:underline">
           Zurück zum Glossar
-        </Link>
+        </a>
       </div>
     );
   }
 
-  return (
-    <div className="max-w-3xl mx-auto py-10 space-y-6">
-      <Link href="/glossar" className="text-sm text-blue-600 hover:underline">
-        ← Zurück zum Glossar
-      </Link>
-
-      <h1 className="text-3xl font-bold text-slate-900">{entry.term}</h1>
-
-      {entry.category && (
-        <p className="text-sm text-slate-500">
-          Kategorie: <strong>{entry.category}</strong>
-        </p>
-      )}
-
-      <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-line">
-        {entry.definition}
-      </p>
-
-      {entry.tags && entry.tags.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-4">
-          {entry.tags.map((tag: string) => (
-            <span
-              key={tag}
-              className="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-full"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+  return <GlossarDetailClient entry={data as GlossEntry} />;
 }

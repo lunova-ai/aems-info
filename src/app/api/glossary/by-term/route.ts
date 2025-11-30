@@ -1,4 +1,5 @@
-import { supabase } from "@/lib/supabase";
+// src/app/api/glossary/by-term/route.ts
+import { supabase } from "@/lib/supabase-node";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -11,7 +12,7 @@ export async function GET(req: Request) {
   const { data, error } = await supabase
     .from("glossary_entries")
     .select("*")
-    .ilike("term", term) // Case-insensitive
+    .ilike("term", term)
     .maybeSingle();
 
   if (error || !data) {
@@ -20,3 +21,4 @@ export async function GET(req: Request) {
 
   return Response.json(data);
 }
+
